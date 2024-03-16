@@ -16,12 +16,16 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <Flex
+      borderBottom={"2px solid #F4F4F4"}
       justifyContent={{
         base: "space-between",
         lg: "space-around",
       }}
       alignItems="center"
-      padding={3}
+      padding={{
+        base: "8px",
+        lg: "0px",
+      }}
     >
       <Flex alignItems="center">
         <Image
@@ -97,15 +101,17 @@ const NavBar = () => {
           </ListItem>
         </UnorderedList>
       </Show>
-      <Flex gap={5}>
-        <Button
-          borderRadius={"35px"}
-          background="white"
-          paddingX={7}
-          border={"1px solid lightgray"}
-        >
-          Login
-        </Button>
+      <Flex gap={8}>
+        <Show above="md">
+          <Button
+            borderRadius={"35px"}
+            background="white"
+            paddingX={7}
+            border={"1px solid lightgray"}
+          >
+            Login
+          </Button>
+        </Show>
         <Box position={"relative"}>
           <AiOutlineShoppingCart size={35} />
           <Badge
