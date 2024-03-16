@@ -14,6 +14,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const navListItems = ["Shop", "Clothing", "Electornics", "Jewelery"];
   return (
     <Flex
       borderBottom={"2px solid #F4F4F4"}
@@ -38,7 +39,7 @@ const NavBar = () => {
         />
         <Text
           textTransform="uppercase"
-          fontWeight={"500"}
+          fontWeight={"700"}
           fontSize={{
             base: 15,
             lg: 30,
@@ -51,54 +52,26 @@ const NavBar = () => {
         <UnorderedList
           display="flex"
           listStyleType="none"
-          gap={7}
+          gap={{
+            base: "5",
+            lg: "12",
+          }}
           fontSize={18}
           paddingTop={2}
         >
-          <ListItem>
-            <Link to="">Shop</Link>
-            <Flex justifyContent={"center"} marginTop={"3px"}>
-              <Box
-                width={"80%"}
-                height="3px"
-                borderRadius={"10px"}
-                background="#eb4d4d"
-              ></Box>
-            </Flex>
-          </ListItem>
-          <ListItem>
-            <Link to="">Clothing</Link>
-            <Flex justifyContent={"center"} marginTop={"3px"}>
-              <Box
-                width={"80%"}
-                height="3px"
-                borderRadius={"10px"}
-                background="#eb4d4d"
-              ></Box>
-            </Flex>
-          </ListItem>
-          <ListItem>
-            <Link to="">Electronics</Link>
-            <Flex justifyContent={"center"} marginTop={"3px"}>
-              <Box
-                width={"80%"}
-                height="3px"
-                borderRadius={"10px"}
-                background="#eb4d4d"
-              ></Box>
-            </Flex>
-          </ListItem>
-          <ListItem>
-            <Link to="">Jewelery</Link>
-            <Flex justifyContent={"center"} marginTop={"3px"}>
-              <Box
-                width={"80%"}
-                height="3px"
-                borderRadius={"10px"}
-                background="#eb4d4d"
-              ></Box>
-            </Flex>
-          </ListItem>
+          {navListItems.map((item, index) => (
+            <ListItem key={index} fontWeight={"500"}>
+              <Link to="">{item}</Link>
+              <Flex justifyContent={"center"} marginTop={"3px"}>
+                <Box
+                  width={"80%"}
+                  height="3px"
+                  borderRadius={"10px"}
+                  background="#eb4d4d"
+                ></Box>
+              </Flex>
+            </ListItem>
+          ))}
         </UnorderedList>
       </Show>
       <Flex gap={8}>
