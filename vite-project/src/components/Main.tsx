@@ -1,7 +1,7 @@
-import { Box } from "@chakra-ui/react";
+import Hero from "./Hero";
 
 const Main = () => {
-  return <Box>Main</Box>;
+  return <Hero />;
 };
 
 export default Main;
