@@ -15,10 +15,14 @@ const Hero = () => {
         md: "space-around",
       }}
       alignItems="center"
-      background="linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(223,185,186,1) 100%)"
+      background="linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(223,185,186,1) 100%)"
     >
       <Box>
         <Text
+          marginTop={{
+            base: 4,
+            lg: "initial",
+          }}
           textAlign={{
             base: "center",
             lg: "initial",
