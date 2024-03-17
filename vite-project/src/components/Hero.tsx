@@ -6,42 +6,105 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const Hero = () => {
   return (
     <Flex
-      justifyContent="space-around"
+      flexDirection={{
+        base: "column",
+        md: "row",
+      }}
+      justifyContent={{
+        base: "center",
+        md: "space-around",
+      }}
       alignItems="center"
       background="linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(223,185,186,1) 100%)"
     >
       <Box>
-        <Text textTransform="uppercase" fontWeight="600" fontSize="26px">
+        <Text
+          textAlign={{
+            base: "center",
+            lg: "initial",
+          }}
+          textTransform="uppercase"
+          fontWeight="600"
+          fontSize={{
+            base: "15px",
+            lg: "26px",
+          }}
+        >
           new arrivals only
         </Text>
-        <Box>
-          <Heading fontSize="80px" fontWeight="600">
-            <Flex alignItems={"center"}>
-              <Text marginRight={5}>new</Text>{" "}
-              <Image src={hello} boxSize={20} />
+        <Box lineHeight={1}>
+          <Text
+            fontSize={{
+              base: "40px",
+              lg: "80px",
+            }}
+            fontWeight="600"
+          >
+            <Flex
+              justifyContent={{
+                base: "center",
+                lg: "initial",
+              }}
+              alignItems={"center"}
+            >
+              <Text marginRight={3}>new</Text>{" "}
+              <Image src={hello} boxSize={{ base: 10, lg: 20 }} />
             </Flex>
-          </Heading>
-          <Heading fontSize="80px" fontWeight="600">
+          </Text>
+          <Text
+            textAlign={{
+              base: "center",
+              lg: "initial",
+            }}
+            fontSize={{
+              base: "40px",
+              lg: "80px",
+            }}
+            fontWeight="600"
+          >
             collections{" "}
-          </Heading>
-          <Heading fontSize="80px" fontWeight="600">
+          </Text>
+          <Text
+            fontSize={{
+              base: "40px",
+              lg: "80px",
+            }}
+            fontWeight="600"
+          >
             for everyone
-          </Heading>
+          </Text>
         </Box>
-        <Button
-          padding={"20px 25px"}
-          marginTop={10}
-          colorScheme="red"
-          borderRadius="25px"
-          fontWeight={"400"}
+        <Flex
+          justifyContent={{
+            base: "center",
+            lg: "initial",
+          }}
         >
-          Latest Collections
-          <Flex marginLeft={2}>
-            <FaLongArrowAltRight />
-          </Flex>
-        </Button>
+          <Button
+            padding={"20px 25px"}
+            marginTop={{
+              base: 5,
+              lg: 10,
+            }}
+            colorScheme="red"
+            borderRadius="25px"
+            fontWeight={"400"}
+          >
+            Latest Collections
+            <Flex marginLeft={2}>
+              <FaLongArrowAltRight />
+            </Flex>
+          </Button>
+        </Flex>
       </Box>
-      <Image src={heroImage} />
+      <Image
+        src={heroImage}
+        objectFit="cover"
+        height={{
+          base: "500px",
+          lg: "initial",
+        }}
+      />
     </Flex>
   );
 };
