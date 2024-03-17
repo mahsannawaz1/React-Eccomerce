@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import hello from "../assets/images/hello.svg";
 import heroImage from "../assets/images/hero_image.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -81,7 +81,7 @@ const Hero = () => {
           }}
         >
           <Button
-            padding={"20px 25px"}
+            padding={"23px 25px"}
             marginTop={{
               base: 5,
               lg: 10,
