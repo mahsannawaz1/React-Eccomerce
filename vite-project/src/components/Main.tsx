@@ -1,3 +1,4 @@
+import ExclusiveOffer from "./ExclusiveOffer";
 import Hero from "./Hero";
 import PopularClothing from "./PopularClothing";
 
@@ -6,6 +7,7 @@ const Main = () => {
     <>
       <Hero />
       <PopularClothing />
+      <ExclusiveOffer />
     </>
   );
 };

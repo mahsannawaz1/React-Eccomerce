@@ -21,7 +21,8 @@ const Hero = () => {
         <Text
           marginTop={{
             base: 4,
-            lg: "initial",
+            lg: 3,
+            xl: "initial",
           }}
           textAlign={{
             base: "center",
@@ -31,7 +32,8 @@ const Hero = () => {
           fontWeight="600"
           fontSize={{
             base: "15px",
-            lg: "26px",
+            lg: "20px",
+            xl: "26px",
           }}
         >
           new arrivals only
@@ -40,7 +42,8 @@ const Hero = () => {
           <Text
             fontSize={{
               base: "40px",
-              lg: "80px",
+              lg: "60px",
+              xl: "80px",
             }}
             fontWeight="600"
           >
@@ -52,7 +55,7 @@ const Hero = () => {
               alignItems={"center"}
             >
               <Text marginRight={3}>new</Text>{" "}
-              <Image src={hello} boxSize={{ base: 10, lg: 20 }} />
+              <Image src={hello} boxSize={{ base: 10, xl: 20 }} />
             </Flex>
           </Text>
           <Text
@@ -62,7 +65,8 @@ const Hero = () => {
             }}
             fontSize={{
               base: "40px",
-              lg: "80px",
+              lg: "60px",
+              xl: "80px",
             }}
             fontWeight="600"
           >
@@ -71,7 +75,8 @@ const Hero = () => {
           <Text
             fontSize={{
               base: "40px",
-              lg: "80px",
+              lg: "60px",
+              xl: "80px",
             }}
             fontWeight="600"
           >
@@ -88,7 +93,7 @@ const Hero = () => {
             padding={"23px 25px"}
             marginTop={{
               base: 5,
-              lg: 10,
+              xl: 10,
             }}
             colorScheme="red"
             borderRadius="25px"
@@ -106,7 +111,7 @@ const Hero = () => {
         objectFit="cover"
         height={{
           base: "500px",
-          lg: "initial",
+          xl: "initial",
         }}
       />
     </Flex>
