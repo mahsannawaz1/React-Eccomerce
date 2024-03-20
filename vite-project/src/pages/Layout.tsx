@@ -1,6 +1,8 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "../components/NavBar";
-import Main from "../components/Main";
+
+import Footer from "../components/Footer";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -9,7 +11,10 @@ const Layout = () => {
         <NavBar />
       </GridItem>
       <GridItem>
-        <Main />
+        <Outlet />
+      </GridItem>
+      <GridItem>
+        <Footer />
       </GridItem>
     </Grid>
   );

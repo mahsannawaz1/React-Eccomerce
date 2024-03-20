@@ -18,7 +18,6 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 const NavBar = () => {
-  const navListItems = ["Shop", "Clothing", "Electornics", "Jewelery"];
   return (
     <Flex
       borderBottom={"2px solid #F4F4F4"}
@@ -63,44 +62,38 @@ const NavBar = () => {
           }}
           fontSize={18}
         >
-          {navListItems.map((item, index) =>
-            item == "Clothing" ? (
-              <ListItem key={index} paddingTop={"2.5px"}>
-                <Menu isLazy>
-                  <MenuButton
-                    fontWeight={"500"}
-                    as={Button}
-                    rightIcon={<ChevronDownIcon />}
-                    variant="outline"
-                    border={0}
-                    fontSize={18}
-                  >
-                    {item}
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>
-                      <Link to="">Men</Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link to="">Women</Link>
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </ListItem>
-            ) : (
-              <ListItem key={index} fontWeight={"500"}>
-                <Link to="">{item}</Link>
-                {/* <Flex justifyContent={"center"} marginTop={"3px"}>
-                  <Box
-                    width={"80%"}
-                    height="3px"
-                    borderRadius={"10px"}
-                    background="#eb4d4d"
-                  ></Box>
-                </Flex> */}
-              </ListItem>
-            )
-          )}
+          <ListItem fontWeight={"500"}>
+            <Link to="/">Shop</Link>
+          </ListItem>
+          <ListItem paddingTop={"2.5px"}>
+            <Menu isLazy>
+              <MenuButton
+                fontWeight={"500"}
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                variant="outline"
+                border={0}
+                fontSize={18}
+              >
+                Clothing
+              </MenuButton>
+              <MenuList>
+                <MenuItem>
+                  <Link to="/men">Men</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/women">Women</Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </ListItem>
+
+          <ListItem fontWeight={"500"}>
+            <Link to="/">Electornics</Link>
+          </ListItem>
+          <ListItem fontWeight={"500"}>
+            <Link to="/">Jewelery</Link>
+          </ListItem>
         </UnorderedList>
       </Show>
       <Flex gap={8}>
