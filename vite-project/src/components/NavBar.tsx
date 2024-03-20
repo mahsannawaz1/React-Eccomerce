@@ -8,11 +8,15 @@ import {
   Badge,
   Button,
   Show,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import logo from "../assets/images/logo.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import { ChevronDownIcon } from "@chakra-ui/icons";
 const NavBar = () => {
   const navListItems = ["Shop", "Clothing", "Electornics", "Jewelery"];
   return (
@@ -51,27 +55,52 @@ const NavBar = () => {
       <Show above="md">
         <UnorderedList
           display="flex"
+          alignItems={"center"}
           listStyleType="none"
           gap={{
             base: "5",
             lg: "12",
           }}
           fontSize={18}
-          paddingTop={2}
         >
-          {navListItems.map((item, index) => (
-            <ListItem key={index} fontWeight={"500"}>
-              <Link to="">{item}</Link>
-              <Flex justifyContent={"center"} marginTop={"3px"}>
-                <Box
-                  width={"80%"}
-                  height="3px"
-                  borderRadius={"10px"}
-                  background="#eb4d4d"
-                ></Box>
-              </Flex>
-            </ListItem>
-          ))}
+          {navListItems.map((item, index) =>
+            item == "Clothing" ? (
+              <ListItem key={index} paddingTop={"2.5px"}>
+                <Menu isLazy>
+                  <MenuButton
+                    fontWeight={"500"}
+                    as={Button}
+                    rightIcon={<ChevronDownIcon />}
+                    variant="outline"
+                    border={0}
+                    fontSize={18}
+                  >
+                    {item}
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>
+                      <Link to="">Men</Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link to="">Women</Link>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </ListItem>
+            ) : (
+              <ListItem key={index} fontWeight={"500"}>
+                <Link to="">{item}</Link>
+                {/* <Flex justifyContent={"center"} marginTop={"3px"}>
+                  <Box
+                    width={"80%"}
+                    height="3px"
+                    borderRadius={"10px"}
+                    background="#eb4d4d"
+                  ></Box>
+                </Flex> */}
+              </ListItem>
+            )
+          )}
         </UnorderedList>
       </Show>
       <Flex gap={8}>
