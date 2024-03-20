@@ -4,7 +4,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 const ExclusiveOfffer = () => {
   return (
-    <Box marginX={{ base: 0, lg: "15px" }}>
+    <Box marginX={{ base: 0, lg: "30px" }}>
       <Flex
         marginY={{
           base: 20,
