@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/images/logo.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 const NavBar = () => {
   return (
@@ -63,7 +63,7 @@ const NavBar = () => {
           fontSize={18}
         >
           <ListItem fontWeight={"500"}>
-            <Link to="/">Shop</Link>
+            <NavLink to="/">Shop</NavLink>
           </ListItem>
           <ListItem paddingTop={"2.5px"}>
             <Menu isLazy>
@@ -79,20 +79,20 @@ const NavBar = () => {
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                  <Link to="/men">Men</Link>
+                  <NavLink to="/men">Men</NavLink>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/women">Women</Link>
+                  <NavLink to="/women">Women</NavLink>
                 </MenuItem>
               </MenuList>
             </Menu>
           </ListItem>
 
           <ListItem fontWeight={"500"}>
-            <Link to="/">Electornics</Link>
+            <NavLink to="/">Electornics</NavLink>
           </ListItem>
           <ListItem fontWeight={"500"}>
-            <Link to="/">Jewelery</Link>
+            <NavLink to="/">Jewelery</NavLink>
           </ListItem>
         </UnorderedList>
       </Show>

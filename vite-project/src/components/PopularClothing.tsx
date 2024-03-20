@@ -7,12 +7,11 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import p1 from "../assets/images/clothing_images/1.png";
-import p2 from "../assets/images/clothing_images/2.png";
-import p3 from "../assets/images/clothing_images/3.png";
-import p4 from "../assets/images/clothing_images/4.png";
+
+import usePopularProducts from "../services/usePopularProducts";
 
 const PopularClothing = () => {
+  const { data } = usePopularProducts();
   return (
     <Box marginY="15px">
       <Box>
@@ -40,86 +39,32 @@ const PopularClothing = () => {
           }}
           gap="25px"
         >
-          <GridItem>
-            <Box border={"none"}>
-              <Box>
-                <Image src={p1} />
-                <Text marginTop={2}>Mens Casual Premium Slim Fit T-Shirts</Text>
-                <Flex alignItems="center">
-                  <Text marginRight={3} fontWeight="600">
-                    80$
-                  </Text>
-                  <Text
-                    display="inline"
-                    textDecoration="line-through"
-                    color="gray"
-                  >
-                    120$
-                  </Text>
-                </Flex>
+          {data?.map((product) => (
+            <GridItem key={product.id}>
+              <Box border={"none"}>
+                <Box>
+                  <Image
+                    src={product.image}
+                    height="418px"
+                    objectFit={"cover"}
+                  />
+                  <Text marginTop={2}>{product.title}</Text>
+                  <Flex alignItems="center">
+                    <Text marginRight={3} fontWeight="600">
+                      {product.price.toFixed(2)}$
+                    </Text>
+                    <Text
+                      display="inline"
+                      textDecoration="line-through"
+                      color="gray"
+                    >
+                      {(product.price + 40).toFixed(2)}$
+                    </Text>
+                  </Flex>
+                </Box>
               </Box>
-            </Box>
-          </GridItem>
-          <GridItem>
-            <Box>
-              <Box>
-                <Image src={p2} />
-                <Text marginTop={2}>Mens Casual Premium Slim Fit T-Shirts</Text>
-                <Flex alignItems="center">
-                  <Text marginRight={3} fontWeight="600">
-                    80$
-                  </Text>
-                  <Text
-                    display="inline"
-                    textDecoration="line-through"
-                    color="gray"
-                  >
-                    120$
-                  </Text>
-                </Flex>
-              </Box>
-            </Box>
-          </GridItem>
-          <GridItem>
-            <Box>
-              <Box>
-                <Image src={p3} />
-                <Text marginTop={2}>Mens Casual Premium Slim Fit T-Shirts</Text>
-                <Flex alignItems="center">
-                  <Text marginRight={3} fontWeight="600">
-                    80$
-                  </Text>
-                  <Text
-                    display="inline"
-                    textDecoration="line-through"
-                    color="gray"
-                  >
-                    120$
-                  </Text>
-                </Flex>
-              </Box>
-            </Box>
-          </GridItem>
-          <GridItem>
-            <Box>
-              <Box>
-                <Image src={p4} />
-                <Text marginTop={2}>Mens Casual Premium Slim Fit T-Shirts</Text>
-                <Flex alignItems="center">
-                  <Text marginRight={3} fontWeight="600">
-                    80$
-                  </Text>
-                  <Text
-                    display="inline"
-                    textDecoration="line-through"
-                    color="gray"
-                  >
-                    120$
-                  </Text>
-                </Flex>
-              </Box>
-            </Box>
-          </GridItem>
+            </GridItem>
+          ))}
         </Grid>
       </Flex>
     </Box>
