@@ -48,10 +48,12 @@ const Subscription = () => {
               outline={0}
               border={"1px solid lightgrey"}
               padding={"23px 25px"}
+              paddingRight="131.41px"
               borderRadius={"25px"}
             />
 
             <Button
+              zIndex={9999}
               variant={"solid"}
               right="0px"
               top="0px"
