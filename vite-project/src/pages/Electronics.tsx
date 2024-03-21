@@ -15,6 +15,7 @@ import {
 import menBanner from "../assets/images/banner_mens.png";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import useElectronics from "../services/useElectronics";
+import { Link } from "react-router-dom";
 
 const Electronics = () => {
   const { data } = useElectronics();
@@ -85,26 +86,28 @@ const Electronics = () => {
           {data?.map((product) => (
             <GridItem key={product.id}>
               <Box border={"none"}>
-                <Box>
-                  <Image
-                    src={product.image}
-                    height="418px"
-                    objectFit={"contain"}
-                  />
-                  <Text marginTop={2}>{product.title}</Text>
-                  <Flex alignItems="center">
-                    <Text marginRight={3} fontWeight="600">
-                      {product.price.toFixed(2)}$
-                    </Text>
-                    <Text
-                      display="inline"
-                      textDecoration="line-through"
-                      color="gray"
-                    >
-                      {(product.price + 40).toFixed(2)}$
-                    </Text>
-                  </Flex>
-                </Box>
+                <Link to={`/product/${product.id}`}>
+                  <Box>
+                    <Image
+                      src={product.image}
+                      height="418px"
+                      objectFit={"contain"}
+                    />
+                    <Text marginTop={2}>{product.title}</Text>
+                    <Flex alignItems="center">
+                      <Text marginRight={3} fontWeight="600">
+                        {product.price.toFixed(2)}$
+                      </Text>
+                      <Text
+                        display="inline"
+                        textDecoration="line-through"
+                        color="gray"
+                      >
+                        {(product.price + 40).toFixed(2)}$
+                      </Text>
+                    </Flex>
+                  </Box>
+                </Link>
               </Box>
             </GridItem>
           ))}

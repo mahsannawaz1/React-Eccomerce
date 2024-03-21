@@ -56,7 +56,13 @@ const ProductDetailPage = () => {
             </Link>
             <LiaGreaterThanSolid />
             <Link as={ReactRouterLink} textTransform={"capitalize"} to="/men">
-              Men
+              {product?.category == "electronics"
+                ? "electronics"
+                : product?.category == "jewelery"
+                ? "jewelery"
+                : product?.category == "men's clothing"
+                ? "men"
+                : "women"}
             </Link>
             <LiaGreaterThanSolid />
             <Link
@@ -80,6 +86,7 @@ const ProductDetailPage = () => {
               <Image
                 src={product?.image}
                 maxHeight={"600px"}
+                maxWidth={"500px"}
                 objectFit={"contain"}
                 marginRight={3}
               />
@@ -170,7 +177,16 @@ const ProductDetailPage = () => {
             <Flex flexDirection={"column"} rowGap={2}>
               <Flex>
                 <Text fontWeight={"600"}>Category: </Text>
-                <Text>Men, T-Shirt, Crop Top </Text>
+                <Text>
+                  {product?.category == "electronics"
+                    ? "Electronics"
+                    : product?.category == "jewelery"
+                    ? "Jewelery"
+                    : product?.category == "men's clothing"
+                    ? "Men"
+                    : "Women"}
+                  , T-Shirt, Crop Top{" "}
+                </Text>
               </Flex>
               <Flex>
                 <Text fontWeight={"600"}>Tags: </Text>
