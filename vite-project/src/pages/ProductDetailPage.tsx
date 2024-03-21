@@ -85,8 +85,8 @@ const ProductDetailPage = () => {
             <Flex justifyContent={{ base: "center", xl: "initial" }}>
               <Image
                 src={product?.image}
-                maxHeight={"600px"}
-                maxWidth={"500px"}
+                maxHeight={"650px"}
+                maxWidth={"400px"}
                 objectFit={"contain"}
                 marginRight={3}
               />
