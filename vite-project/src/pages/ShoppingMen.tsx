@@ -12,14 +12,12 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import p1 from "../assets/images/clothing_images/1.png";
-import p2 from "../assets/images/clothing_images/2.png";
-import p3 from "../assets/images/clothing_images/3.png";
-import p4 from "../assets/images/clothing_images/4.png";
 import menBanner from "../assets/images/banner_mens.png";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import useMenClothing from "../services/useMenClothing";
 
 const ShoppingMen = () => {
+  const { data } = useMenClothing();
   return (
     <Box
       margin={{
@@ -46,9 +44,9 @@ const ShoppingMen = () => {
           gap="25px"
         >
           <Flex alignItems={"center"}>
-            <Text fontWeight={"bold"}>Showing 1-20</Text>
+            <Text fontWeight={"bold"}>Showing 1-{data?.length}</Text>
             <Hide below="md">
-              <Text marginLeft={1}> out of 54 Products</Text>
+              <Text marginLeft={1}> out of 20 Products</Text>
             </Hide>
           </Flex>
           <Menu>
@@ -84,7 +82,33 @@ const ShoppingMen = () => {
           }}
           gap="25px"
         >
-          <GridItem>
+          {data?.map((product) => (
+            <GridItem key={product.id}>
+              <Box border={"none"}>
+                <Box>
+                  <Image
+                    src={product.image}
+                    height="418px"
+                    objectFit={"contain"}
+                  />
+                  <Text marginTop={2}>{product.title}</Text>
+                  <Flex alignItems="center">
+                    <Text marginRight={3} fontWeight="600">
+                      {product.price.toFixed(2)}$
+                    </Text>
+                    <Text
+                      display="inline"
+                      textDecoration="line-through"
+                      color="gray"
+                    >
+                      {(product.price + 40).toFixed(2)}$
+                    </Text>
+                  </Flex>
+                </Box>
+              </Box>
+            </GridItem>
+          ))}
+          {/* <GridItem>
             <Box border={"none"}>
               <Box>
                 <Image src={p1} />
@@ -203,7 +227,7 @@ const ShoppingMen = () => {
                 </Flex>
               </Box>
             </Box>
-          </GridItem>
+          </GridItem> */}
         </Grid>
       </Flex>
     </Box>

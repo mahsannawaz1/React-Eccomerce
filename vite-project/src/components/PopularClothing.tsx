@@ -46,7 +46,7 @@ const PopularClothing = () => {
                   <Image
                     src={product.image}
                     height="418px"
-                    objectFit={"cover"}
+                    objectFit={"contain"}
                   />
                   <Text marginTop={2}>{product.title}</Text>
                   <Flex alignItems="center">

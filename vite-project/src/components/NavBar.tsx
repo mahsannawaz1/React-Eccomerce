@@ -89,10 +89,10 @@ const NavBar = () => {
           </ListItem>
 
           <ListItem fontWeight={"500"}>
-            <NavLink to="/">Electornics</NavLink>
+            <NavLink to="/electronics">Electornics</NavLink>
           </ListItem>
           <ListItem fontWeight={"500"}>
-            <NavLink to="/">Jewelery</NavLink>
+            <NavLink to="/jewelery">Jewelery</NavLink>
           </ListItem>
         </UnorderedList>
       </Show>
