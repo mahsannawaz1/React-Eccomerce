@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar";
 
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
-import ProductDetailPage from "./ProductDetailPage";
 
 const Layout = () => {
   return (
@@ -12,7 +11,7 @@ const Layout = () => {
         <NavBar />
       </GridItem>
       <GridItem>
-        <ProductDetailPage />
+        <Outlet />
       </GridItem>
       <GridItem>
         <Footer />

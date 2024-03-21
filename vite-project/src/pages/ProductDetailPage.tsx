@@ -14,10 +14,10 @@ import {
   TabPanel,
   Show,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useParams } from "react-router-dom";
 import { LiaGreaterThanSolid } from "react-icons/lia";
-import p1 from "../assets/images/clothing_images/1.png";
 import { CiStar } from "react-icons/ci";
+import useProductDetial from "../services/useProductDetial";
 
 const ProductDetailPage = () => {
   const SIZES: { [size: string]: string } = {
@@ -27,7 +27,11 @@ const ProductDetailPage = () => {
     X_LARGE: "XL",
     XX_LARGE: "XXL",
   };
-  console.log(Object.entries(SIZES));
+  const { id } = useParams();
+  const ID = parseInt(id ?? "0");
+
+  const { data: product } = useProductDetial(ID);
+
   return (
     <>
       <Flex
@@ -58,9 +62,9 @@ const ProductDetailPage = () => {
             <Link
               as={ReactRouterLink}
               textTransform={"capitalize"}
-              to="/product/:id"
+              to={`/product/:${product?.id}`}
             >
-              Men Green Solid ZipperedFull Zip Fit Bomber Jacket
+              {product?.title}
             </Link>
           </Flex>
         </Show>
@@ -69,21 +73,42 @@ const ProductDetailPage = () => {
             base: "100%",
             lg: "40% 60%",
           }}
-          gap={{ base: 10, xl: 0 }}
+          gap={{ base: 10, xl: 5 }}
         >
           <GridItem>
             <Flex justifyContent={{ base: "center", xl: "initial" }}>
-              <Image src={p1} objectFit={"contain"} />
+              <Image
+                src={product?.image}
+                maxHeight={"600px"}
+                objectFit={"contain"}
+                marginRight={3}
+              />
               <Show above="xl">
                 <Flex
                   flexDirection={"column"}
                   rowGap={1}
                   justifyContent={"space-between"}
                 >
-                  <Image src={p1} boxSize={100} objectFit={"contain"} />
-                  <Image src={p1} boxSize={100} objectFit={"contain"} />
-                  <Image src={p1} boxSize={100} objectFit={"contain"} />
-                  <Image src={p1} boxSize={100} objectFit={"contain"} />
+                  <Image
+                    src={product?.image}
+                    boxSize={100}
+                    objectFit={"contain"}
+                  />
+                  <Image
+                    src={product?.image}
+                    boxSize={100}
+                    objectFit={"contain"}
+                  />
+                  <Image
+                    src={product?.image}
+                    boxSize={100}
+                    objectFit={"contain"}
+                  />
+                  <Image
+                    src={product?.image}
+                    boxSize={100}
+                    objectFit={"contain"}
+                  />
                 </Flex>
               </Show>
             </Flex>
@@ -93,16 +118,14 @@ const ProductDetailPage = () => {
             flexDirection={"column"}
             justifyContent={"space-between"}
           >
-            <Heading>
-              Men Green Solid ZipperedFull Zip Fit Bomber Jacket
-            </Heading>
+            <Heading>{product?.title}</Heading>
             <Flex gap={"2px"} alignItems={"center"}>
               <CiStar />
               <CiStar />
               <CiStar />
               <CiStar />
               <CiStar />
-              <Text>( 122 )</Text>
+              <Text fontWeight={"bold"}>( {product?.rating.count} )</Text>
             </Flex>
             <Flex
               gap={4}
@@ -113,14 +136,11 @@ const ProductDetailPage = () => {
               fontWeight={"600"}
             >
               <Text textDecoration={"line-through"} color="gray">
-                $120
+                ${(product?.price ? product?.price + 40 : 0).toFixed(2)}
               </Text>
-              <Text color="red">$65</Text>
+              <Text color="red">$ {product?.price.toFixed(2)}</Text>
             </Flex>
-            <Text>
-              Your perfect pack for everyday use and walks in the forest. Stash
-              your laptop (up to 15 inches) in the padded sleeve, your everyday
-            </Text>
+            <Text>{product?.description}</Text>
             <Text
               marginY={3}
               fontSize={{
@@ -177,7 +197,7 @@ const ProductDetailPage = () => {
               padding={{ base: "8px 15px", xl: "15px 20px" }}
               borderRight="1px solid rgb(226, 232, 240)"
             >
-              Reviews (122)
+              Reviews ({product?.rating.count})
             </Tab>
           </TabList>
           <TabPanels>

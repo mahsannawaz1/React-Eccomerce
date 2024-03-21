@@ -8,6 +8,7 @@ export interface Product {
   price: number;
   rating: { rate: number; count: number };
   category: "men's clothing" | "women's clothing" | "electronics" | "jewelery";
+  description: string;
 }
 
 const usePopularProducts = () => {
