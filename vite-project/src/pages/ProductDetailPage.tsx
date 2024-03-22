@@ -19,9 +19,9 @@ import { LiaGreaterThanSolid } from "react-icons/lia";
 import { IoStar } from "react-icons/io5";
 import { IoStarOutline } from "react-icons/io5";
 import useProductDetial from "../services/useProductDetial";
-import { useReducer } from "react";
-import cartReducer from "../reducers/cartReducer";
 import { Product } from "../services/usePopularProducts";
+import { useContext } from "react";
+import CartContext from "../assets/contexts/cartContext";
 
 const ProductDetailPage = () => {
   const SIZES: { [size: string]: string } = {
@@ -50,9 +50,7 @@ const ProductDetailPage = () => {
     i++
   )
     remainingIcons.push(i);
-
-  const [value, dispatch] = useReducer(cartReducer, { cartItems: [] });
-
+  const { cart, dispatch } = useContext(CartContext);
   return (
     <>
       <Flex
@@ -85,7 +83,7 @@ const ProductDetailPage = () => {
                   : product?.category == "jewelery"
                   ? "/jewelery"
                   : product?.category == "men's clothing"
-                  ? "men"
+                  ? "/men"
                   : product?.category == "women's clothing"
                   ? "/women"
                   : "/"
@@ -208,10 +206,30 @@ const ProductDetailPage = () => {
             <Flex marginY={3}>
               <Button
                 onClick={() =>
-                  dispatch({
-                    type: "ADD",
-                    data: { item: product ?? ({} as Product), quantity: 1 },
-                  })
+                  // dispatch({
+                  //   type: "ADD",
+                  //   data: { item: product ?? ({} as Product), quantity: 1 },
+                  // })
+                  {
+                    const searchedProduct = cart.cartItems.find(
+                      ({ item }) => item.id === product?.id
+                    );
+                    console.log(searchedProduct);
+                    console.log(cart);
+                    if (searchedProduct) {
+                      console.log("update");
+                      dispatch({
+                        type: "UPDATE",
+                        cartItemId: searchedProduct.item.id,
+                      });
+                    } else {
+                      console.log("add");
+                      dispatch({
+                        type: "ADD",
+                        data: { item: product ?? ({} as Product), quantity: 1 },
+                      });
+                    }
+                  }
                 }
                 colorScheme="red"
                 textTransform={"uppercase"}

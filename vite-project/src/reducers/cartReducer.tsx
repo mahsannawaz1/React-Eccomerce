@@ -4,7 +4,7 @@ interface CartItem {
   item: Product;
   quantity: number;
 }
-interface Cart {
+export interface Cart {
   cartItems: CartItem[];
 }
 interface AddCartItem {
@@ -19,7 +19,7 @@ interface DeleteCartItem {
   type: "DELETE";
   cartItemId: number;
 }
-type CartAction = AddCartItem | UpdateCartItem | DeleteCartItem;
+export type CartAction = AddCartItem | UpdateCartItem | DeleteCartItem;
 
 const cartReducer = (state: Cart, action: CartAction): Cart => {
   switch (action.type) {
@@ -33,9 +33,9 @@ const cartReducer = (state: Cart, action: CartAction): Cart => {
       };
     case "UPDATE":
       return {
-        cartItems: state.cartItems.filter((cartItem) =>
+        cartItems: state.cartItems.map((cartItem) =>
           cartItem.item.id === action.cartItemId
-            ? { ...cartItem, quantity: cartItem.quantity++ }
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         ),
       };

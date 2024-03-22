@@ -13,9 +13,14 @@ import {
   Button,
   Input,
   Badge,
+  Image,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
+
+import CartContext from "../assets/contexts/cartContext";
+import { useContext } from "react";
 const Cart = () => {
+  const { cart, dispatch } = useContext(CartContext);
   return (
     <Box paddingX="10%" marginY={10}>
       <TableContainer>
@@ -39,20 +44,29 @@ const Cart = () => {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>inches</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-              <Td textAlign={"end"}>
-                <Badge padding="5px 15px">4</Badge>
-              </Td>
-              <Td textAlign={"end"}>millimetres (mm)</Td>
-              <Td isNumeric>
-                <Flex justifyContent={"center"}>
-                  <IoClose />
-                </Flex>
-              </Td>
-            </Tr>
+            {cart.cartItems.map(({ item, quantity }) => (
+              <Tr key={item.id}>
+                <Td>
+                  <Image src={item.image} boxSize={10} />
+                </Td>
+                <Td>{item.title}</Td>
+                <Td isNumeric>${item.price.toFixed(2)}</Td>
+                <Td textAlign={"end"}>
+                  <Badge padding="5px 15px">{quantity}</Badge>
+                </Td>
+                <Td textAlign={"end"}>${(4 * item.price).toFixed(2)}</Td>
+                <Td isNumeric>
+                  <Flex justifyContent={"center"}>
+                    <IoClose
+                      cursor={"pointer"}
+                      onClick={() =>
+                        dispatch({ type: "DELETE", cartItemId: item.id })
+                      }
+                    />
+                  </Flex>
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
@@ -63,36 +77,32 @@ const Cart = () => {
           </Heading>
           <TableContainer>
             <Table>
-              <Thead>
-                {/* <Tr fontWeight="bold">
-                  <Th fontWeight="bold">Products</Th>
-                  <Th fontWeight="bold">Title</Th>
-                  <Th fontWeight="bold" isNumeric>
-                    Price
-                  </Th>
-                  <Th fontWeight="bold" isNumeric>
-                    Quantity
-                  </Th>
-                  <Th fontWeight="bold" isNumeric>
-                    Total
-                  </Th>
-                  <Th fontWeight="bold" isNumeric>
-                    Remove
-                  </Th>
-                </Tr> */}
-              </Thead>
+              <Thead></Thead>
               <Tbody>
                 <Tr>
                   <Td>Subtotal</Td>
-                  <Td paddingLeft={200}>$82</Td>
+                  <Td paddingLeft={200}>
+                    $
+                    {cart.cartItems.reduce(
+                      (acc, item) => acc + item.item.price,
+                      0
+                    )}
+                  </Td>
                 </Tr>
                 <Tr>
                   <Td>Shipping Fee </Td>
                   <Td paddingLeft={200}>Free </Td>
                 </Tr>
-                <Tr>
-                  <Td fontWeight={"bold"}>Total</Td>
-                  <Td paddingLeft={200}>$82</Td>
+                <Tr fontWeight={"bold"}>
+                  <Td>Total</Td>
+                  <Td paddingLeft={200}>
+                    {" "}
+                    $
+                    {cart.cartItems.reduce(
+                      (acc, item) => acc + item.item.price,
+                      0
+                    )}
+                  </Td>
                 </Tr>
               </Tbody>
             </Table>

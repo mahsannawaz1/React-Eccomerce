@@ -17,7 +17,10 @@ import logo from "../assets/images/logo.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useContext } from "react";
+import CartContext from "../assets/contexts/cartContext";
 const NavBar = () => {
+  const { cart } = useContext(CartContext);
   return (
     <Flex
       borderBottom={"2px solid #F4F4F4"}
@@ -114,9 +117,9 @@ const NavBar = () => {
               position={"absolute"}
               top={"0px"}
               right="0px"
-              colorScheme="green"
+              colorScheme="red"
             >
-              1
+              {cart.cartItems.length}
             </Badge>
           </Box>
         </NavLink>
