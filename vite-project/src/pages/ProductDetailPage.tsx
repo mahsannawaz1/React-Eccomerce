@@ -19,6 +19,9 @@ import { LiaGreaterThanSolid } from "react-icons/lia";
 import { IoStar } from "react-icons/io5";
 import { IoStarOutline } from "react-icons/io5";
 import useProductDetial from "../services/useProductDetial";
+import { useReducer } from "react";
+import cartReducer from "../reducers/cartReducer";
+import { Product } from "../services/usePopularProducts";
 
 const ProductDetailPage = () => {
   const SIZES: { [size: string]: string } = {
@@ -47,6 +50,8 @@ const ProductDetailPage = () => {
     i++
   )
     remainingIcons.push(i);
+
+  const [value, dispatch] = useReducer(cartReducer, { cartItems: [] });
 
   return (
     <>
@@ -202,12 +207,18 @@ const ProductDetailPage = () => {
             </Flex>
             <Flex marginY={3}>
               <Button
+                onClick={() =>
+                  dispatch({
+                    type: "ADD",
+                    data: { item: product ?? ({} as Product), quantity: 1 },
+                  })
+                }
                 colorScheme="red"
                 textTransform={"uppercase"}
                 borderRadius={0}
                 padding={"15px 20px"}
               >
-                Add TO cart
+                Add To cart
               </Button>
             </Flex>
             <Flex flexDirection={"column"} rowGap={2}>
