@@ -15,6 +15,7 @@ import {
   Badge,
   Image,
   Link,
+  Show,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
 
@@ -29,18 +30,26 @@ const Cart = () => {
         <Table variant="simple">
           <Thead>
             <Tr fontWeight="bold">
-              <Th fontWeight="bold">Products</Th>
-              <Th fontWeight="bold">Title</Th>
-              <Th fontWeight="bold" isNumeric>
-                Price
+              <Th fontWeight="bold" padding={{ base: "5px" }}>
+                <Text textAlign={"center"}>Products</Text>
               </Th>
-              <Th fontWeight="bold" isNumeric>
-                Quantity
+              <Show above="lg">
+                <Th fontWeight="bold" padding={{ base: "5px" }}>
+                  Title
+                </Th>
+              </Show>
+              <Th fontWeight="bold" padding={{ base: "5px" }} isNumeric>
+                <Text textAlign={"center"}>Price</Text>
               </Th>
-              <Th fontWeight="bold" isNumeric>
-                Total
+              <Th fontWeight="bold" padding={{ base: "5px" }} isNumeric>
+                <Text textAlign={"center"}>Qty</Text>
               </Th>
-              <Th fontWeight="bold" isNumeric>
+              <Show above="md">
+                <Th fontWeight="bold" padding={{ base: "5px" }} isNumeric>
+                  <Text textAlign={"center"}>Total</Text>
+                </Th>
+              </Show>
+              <Th fontWeight="bold" padding={{ base: "5px" }} isNumeric>
                 <Text textAlign={"center"}>Remove</Text>
               </Th>
             </Tr>
@@ -48,24 +57,43 @@ const Cart = () => {
           <Tbody>
             {cart.cartItems.map(({ item, quantity }) => (
               <Tr key={item.id}>
-                <Td>
+                <Td padding={{ base: "5px" }}>
                   <Flex justifyContent={"center"}>
                     <Link as={ReactRouterLink} to={`/product/${item.id}`}>
                       <Image src={item.image} boxSize={10} />
                     </Link>
                   </Flex>
                 </Td>
-                <Td>
-                  <Link as={ReactRouterLink} to={`/product/${item.id}`}>
-                    {item.title}
-                  </Link>
+                <Show above="lg">
+                  <Td
+                    padding={{ base: "5px" }}
+                    maxWidth={"200px"}
+                    whiteSpace={"nowrap"}
+                    isTruncated
+                  >
+                    <Link as={ReactRouterLink} to={`/product/${item.id}`}>
+                      {item.title}
+                    </Link>
+                  </Td>
+                </Show>
+                <Td isNumeric padding={{ base: "5px" }}>
+                  <Text textAlign={"center"}>${item.price.toFixed(2)}</Text>
                 </Td>
-                <Td isNumeric>${item.price.toFixed(2)}</Td>
-                <Td textAlign={"end"}>
-                  <Badge padding="5px 15px">{quantity}</Badge>
+                <Td textAlign={"end"} padding={{ base: "5px" }}>
+                  <Flex justifyContent={"Center"}>
+                    <Badge padding={{ base: "5px 10px", lg: "5px 15px" }}>
+                      {quantity}
+                    </Badge>
+                  </Flex>
                 </Td>
-                <Td textAlign={"end"}>${(4 * item.price).toFixed(2)}</Td>
-                <Td isNumeric>
+                <Show above="md">
+                  <Td textAlign={"end"} padding={{ base: "5px" }}>
+                    <Text textAlign={"center"}>
+                      ${(4 * item.price).toFixed(2)}
+                    </Text>
+                  </Td>
+                </Show>
+                <Td isNumeric padding={{ base: "5px" }}>
                   <Flex justifyContent={"center"}>
                     <IoClose
                       cursor={"pointer"}
@@ -80,7 +108,65 @@ const Cart = () => {
           </Tbody>
         </Table>
       </TableContainer>
-      <Flex marginY={10}>
+
+      {/* <Show below={"md"}>
+        <Heading textAlign={"center"}>Products</Heading>
+        <TableContainer>
+          <Table variant="simple">
+            <Tr fontWeight="bold">
+              <Th fontWeight="bold" padding={"5px"}>
+                Products
+              </Th>
+              <Th fontWeight="bold" padding="5px" isNumeric>
+                <Text textAlign={"center"}>Price</Text>
+              </Th>
+              <Th fontWeight="bold" padding="5px" isNumeric>
+                <Text textAlign={"center"}>Qty</Text>
+              </Th>
+
+              <Th fontWeight="bold" padding="5px" isNumeric>
+                <Text textAlign={"center"}>Remove</Text>
+              </Th>
+            </Tr>
+            <Tbody>
+              {cart.cartItems.map(({ item, quantity }) => (
+                <Tr key={item.id}>
+                  <Td>
+                    <Flex justifyContent={"center"}>
+                      <Link as={ReactRouterLink} to={`/product/${item.id}`}>
+                        <Image src={item.image} boxSize={5} />
+                      </Link>
+                    </Flex>
+                  </Td>
+
+                  <Td isNumeric>${item.price.toFixed(2)}</Td>
+                  <Td textAlign={"end"}>
+                    <Badge padding="5px 10px">{quantity}</Badge>
+                  </Td>
+
+                  <Td isNumeric>
+                    <Flex justifyContent={"center"}>
+                      <IoClose
+                        cursor={"pointer"}
+                        onClick={() =>
+                          dispatch({ type: "DELETE", cartItemId: item.id })
+                        }
+                      />
+                    </Flex>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </Show> */}
+      <Flex
+        marginY={10}
+        flexDirection={{
+          base: "column",
+          lg: "row",
+        }}
+      >
         <Box>
           <Heading marginBottom={3} fontSize={30} marginLeft={5}>
             Cart Total
@@ -91,7 +177,7 @@ const Cart = () => {
               <Tbody>
                 <Tr>
                   <Td>Subtotal</Td>
-                  <Td paddingLeft={200}>
+                  <Td paddingLeft={{ base: 10, lg: 200 }}>
                     $
                     {cart.cartItems.reduce(
                       (acc, item) => acc + item.quantity * item.item.price,
@@ -101,13 +187,16 @@ const Cart = () => {
                 </Tr>
                 <Tr>
                   <Td>Shipping Fee </Td>
-                  <Td paddingLeft={200} textAlign={"end"}>
+                  <Td
+                    paddingLeft={{ base: 10, lg: 200 }}
+                    textAlign={{ lg: "end" }}
+                  >
                     Free{" "}
                   </Td>
                 </Tr>
                 <Tr fontWeight={"bold"}>
                   <Td>Total</Td>
-                  <Td paddingLeft={200}>
+                  <Td paddingLeft={{ base: 10, lg: 200 }}>
                     {" "}
                     $
                     {cart.cartItems.reduce(
@@ -120,7 +209,7 @@ const Cart = () => {
             </Table>
           </TableContainer>
         </Box>
-        <Box width="400px" marginLeft={"10%"}>
+        <Box width="400px" marginLeft={{ base: 0, lg: "10%" }}>
           <Text color={"gray"}>If you have a Promo code,Enter it here</Text>
           <Flex justifyContent="center" position={"relative"} marginTop={1}>
             <Input
@@ -129,7 +218,7 @@ const Cart = () => {
               outline={0}
               border={"1px solid lightgrey"}
               padding={"15px 10px"}
-              paddingRight="110.41px"
+              // paddingRight="110.41px"
               borderRadius={0}
             />
 
@@ -150,7 +239,7 @@ const Cart = () => {
           </Flex>
         </Box>
       </Flex>
-      <Flex marginY={6} marginLeft={5}>
+      <Flex marginY={6} marginLeft={{ base: 0, lg: 5 }}>
         <Button
           colorScheme="red"
           textTransform={"uppercase"}

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/images/logo.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useContext } from "react";
 import CartContext from "../assets/contexts/cartContext";
@@ -34,27 +34,29 @@ const NavBar = () => {
         lg: "0px",
       }}
     >
-      <Flex alignItems="center">
-        <Image
-          src={logo}
-          boxSize={{
-            base: "40px",
-            lg: "80px",
-          }}
-          objectFit="cover"
-        />
-        <Text
-          textTransform="uppercase"
-          fontWeight={"700"}
-          fontSize={{
-            base: 15,
-            lg: 30,
-          }}
-        >
-          Shopper
-        </Text>
-      </Flex>
-      <Show above="md">
+      <Link to="/">
+        <Flex alignItems="center">
+          <Image
+            src={logo}
+            boxSize={{
+              base: "40px",
+              lg: "80px",
+            }}
+            objectFit="cover"
+          />
+          <Text
+            textTransform="uppercase"
+            fontWeight={"700"}
+            fontSize={{
+              base: 15,
+              lg: 30,
+            }}
+          >
+            Shopper
+          </Text>
+        </Flex>
+      </Link>
+      <Show above="lg">
         <UnorderedList
           display="flex"
           alignItems={"center"}
@@ -100,7 +102,7 @@ const NavBar = () => {
         </UnorderedList>
       </Show>
       <Flex gap={8}>
-        <Show above="md">
+        <Show above="lg">
           <Button
             borderRadius={"35px"}
             background="white"
