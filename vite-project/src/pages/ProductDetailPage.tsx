@@ -14,7 +14,11 @@ import {
   TabPanel,
   Show,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink, useParams } from "react-router-dom";
+import {
+  Link as ReactRouterLink,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { LiaGreaterThanSolid } from "react-icons/lia";
 import { IoStar } from "react-icons/io5";
 import { IoStarOutline } from "react-icons/io5";
@@ -24,6 +28,7 @@ import { useContext } from "react";
 import CartContext from "../assets/contexts/cartContext";
 
 const ProductDetailPage = () => {
+  const navigate = useNavigate();
   const SIZES: { [size: string]: string } = {
     SMALL: "S",
     MEDIUM: "M",
@@ -229,6 +234,7 @@ const ProductDetailPage = () => {
                         data: { item: product ?? ({} as Product), quantity: 1 },
                       });
                     }
+                    navigate("/cart");
                   }
                 }
                 colorScheme="red"

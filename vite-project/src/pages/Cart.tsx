@@ -49,9 +49,11 @@ const Cart = () => {
             {cart.cartItems.map(({ item, quantity }) => (
               <Tr key={item.id}>
                 <Td>
-                  <Link as={ReactRouterLink} to={`/product/${item.id}`}>
-                    <Image src={item.image} boxSize={10} />
-                  </Link>
+                  <Flex justifyContent={"center"}>
+                    <Link as={ReactRouterLink} to={`/product/${item.id}`}>
+                      <Image src={item.image} boxSize={10} />
+                    </Link>
+                  </Flex>
                 </Td>
                 <Td>
                   <Link as={ReactRouterLink} to={`/product/${item.id}`}>
@@ -115,16 +117,6 @@ const Cart = () => {
               </Tbody>
             </Table>
           </TableContainer>
-          <Flex marginY={6} marginLeft={5}>
-            <Button
-              colorScheme="red"
-              textTransform={"uppercase"}
-              borderRadius={0}
-              padding={"15px 20px"}
-            >
-              Proceed To Checkout
-            </Button>
-          </Flex>
         </Box>
         <Box width="400px" marginLeft={"10%"}>
           <Text color={"gray"}>If you have a Promo code,Enter it here</Text>
@@ -155,6 +147,16 @@ const Cart = () => {
             </Button>
           </Flex>
         </Box>
+      </Flex>
+      <Flex marginY={6} marginLeft={5}>
+        <Button
+          colorScheme="red"
+          textTransform={"uppercase"}
+          borderRadius={0}
+          padding={"15px 20px"}
+        >
+          Proceed To Checkout
+        </Button>
       </Flex>
     </Box>
   );
