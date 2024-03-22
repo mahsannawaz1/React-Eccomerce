@@ -109,57 +109,6 @@ const Cart = () => {
         </Table>
       </TableContainer>
 
-      {/* <Show below={"md"}>
-        <Heading textAlign={"center"}>Products</Heading>
-        <TableContainer>
-          <Table variant="simple">
-            <Tr fontWeight="bold">
-              <Th fontWeight="bold" padding={"5px"}>
-                Products
-              </Th>
-              <Th fontWeight="bold" padding="5px" isNumeric>
-                <Text textAlign={"center"}>Price</Text>
-              </Th>
-              <Th fontWeight="bold" padding="5px" isNumeric>
-                <Text textAlign={"center"}>Qty</Text>
-              </Th>
-
-              <Th fontWeight="bold" padding="5px" isNumeric>
-                <Text textAlign={"center"}>Remove</Text>
-              </Th>
-            </Tr>
-            <Tbody>
-              {cart.cartItems.map(({ item, quantity }) => (
-                <Tr key={item.id}>
-                  <Td>
-                    <Flex justifyContent={"center"}>
-                      <Link as={ReactRouterLink} to={`/product/${item.id}`}>
-                        <Image src={item.image} boxSize={5} />
-                      </Link>
-                    </Flex>
-                  </Td>
-
-                  <Td isNumeric>${item.price.toFixed(2)}</Td>
-                  <Td textAlign={"end"}>
-                    <Badge padding="5px 10px">{quantity}</Badge>
-                  </Td>
-
-                  <Td isNumeric>
-                    <Flex justifyContent={"center"}>
-                      <IoClose
-                        cursor={"pointer"}
-                        onClick={() =>
-                          dispatch({ type: "DELETE", cartItemId: item.id })
-                        }
-                      />
-                    </Flex>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </Show> */}
       <Flex
         marginY={10}
         flexDirection={{
