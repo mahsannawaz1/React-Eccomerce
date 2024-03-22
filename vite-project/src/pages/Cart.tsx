@@ -94,14 +94,16 @@ const Cart = () => {
                   <Td paddingLeft={200}>
                     $
                     {cart.cartItems.reduce(
-                      (acc, item) => acc + item.item.price,
+                      (acc, item) => acc + item.quantity * item.item.price,
                       0
                     )}
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>Shipping Fee </Td>
-                  <Td paddingLeft={200}>Free </Td>
+                  <Td paddingLeft={200} textAlign={"end"}>
+                    Free{" "}
+                  </Td>
                 </Tr>
                 <Tr fontWeight={"bold"}>
                   <Td>Total</Td>
@@ -109,7 +111,7 @@ const Cart = () => {
                     {" "}
                     $
                     {cart.cartItems.reduce(
-                      (acc, item) => acc + item.item.price,
+                      (acc, item) => acc + item.quantity * item.item.price,
                       0
                     )}
                   </Td>
