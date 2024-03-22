@@ -7,7 +7,12 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <Grid>
-      <GridItem>
+      <GridItem
+        position="sticky"
+        top="0px"
+        zIndex={99999999}
+        background={"white"}
+      >
         <NavBar />
       </GridItem>
       <GridItem>

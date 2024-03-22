@@ -71,14 +71,30 @@ const ProductDetailPage = () => {
               Shop
             </Link>
             <LiaGreaterThanSolid />
-            <Link as={ReactRouterLink} textTransform={"capitalize"} to="/men">
+            <Link
+              as={ReactRouterLink}
+              textTransform={"capitalize"}
+              to={
+                product?.category == "electronics"
+                  ? "/electronics"
+                  : product?.category == "jewelery"
+                  ? "/jewelery"
+                  : product?.category == "men's clothing"
+                  ? "men"
+                  : product?.category == "women's clothing"
+                  ? "/women"
+                  : "/"
+              }
+            >
               {product?.category == "electronics"
                 ? "electronics"
                 : product?.category == "jewelery"
                 ? "jewelery"
                 : product?.category == "men's clothing"
                 ? "men"
-                : "women"}
+                : product?.category == "women's clothing"
+                ? "women"
+                : "/"}
             </Link>
             <LiaGreaterThanSolid />
             <Link
