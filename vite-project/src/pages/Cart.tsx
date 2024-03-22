@@ -14,11 +14,13 @@ import {
   Input,
   Badge,
   Image,
+  Link,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
 
 import CartContext from "../assets/contexts/cartContext";
 import { useContext } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 const Cart = () => {
   const { cart, dispatch } = useContext(CartContext);
   return (
@@ -47,9 +49,15 @@ const Cart = () => {
             {cart.cartItems.map(({ item, quantity }) => (
               <Tr key={item.id}>
                 <Td>
-                  <Image src={item.image} boxSize={10} />
+                  <Link as={ReactRouterLink} to={`/product/${item.id}`}>
+                    <Image src={item.image} boxSize={10} />
+                  </Link>
                 </Td>
-                <Td>{item.title}</Td>
+                <Td>
+                  <Link as={ReactRouterLink} to={`/product/${item.id}`}>
+                    {item.title}
+                  </Link>
+                </Td>
                 <Td isNumeric>${item.price.toFixed(2)}</Td>
                 <Td textAlign={"end"}>
                   <Badge padding="5px 15px">{quantity}</Badge>
