@@ -89,7 +89,7 @@ const Cart = () => {
                 <Show above="md">
                   <Td textAlign={"end"} padding={{ base: "5px" }}>
                     <Text textAlign={"center"}>
-                      ${(4 * item.price).toFixed(2)}
+                      ${(quantity * item.price).toFixed(2)}
                     </Text>
                   </Td>
                 </Show>
@@ -110,7 +110,7 @@ const Cart = () => {
       </TableContainer>
 
       <Flex
-        marginY={10}
+        marginY={{ base: 3, lg: 10 }}
         flexDirection={{
           base: "column",
           lg: "row",
@@ -140,13 +140,12 @@ const Cart = () => {
                     paddingLeft={{ base: 10, lg: 200 }}
                     textAlign={{ lg: "end" }}
                   >
-                    Free{" "}
+                    Free
                   </Td>
                 </Tr>
                 <Tr fontWeight={"bold"}>
                   <Td>Total</Td>
                   <Td paddingLeft={{ base: 10, lg: 200 }}>
-                    {" "}
                     $
                     {cart.cartItems.reduce(
                       (acc, item) => acc + item.quantity * item.item.price,
@@ -158,7 +157,11 @@ const Cart = () => {
             </Table>
           </TableContainer>
         </Box>
-        <Box width="400px" marginLeft={{ base: 0, lg: "10%" }}>
+        <Box
+          width={{ lg: "400px" }}
+          marginLeft={{ base: 0, lg: "10%" }}
+          marginY={{ base: 3, lg: 0 }}
+        >
           <Text color={"gray"}>If you have a Promo code,Enter it here</Text>
           <Flex justifyContent="center" position={"relative"} marginTop={1}>
             <Input
@@ -188,7 +191,10 @@ const Cart = () => {
           </Flex>
         </Box>
       </Flex>
-      <Flex marginY={6} marginLeft={{ base: 0, lg: 5 }}>
+      <Flex
+        marginLeft={{ base: 0, lg: 5 }}
+        justifyContent={{ base: "center", lg: "flex-start" }}
+      >
         <Button
           colorScheme="red"
           textTransform={"uppercase"}
