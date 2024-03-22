@@ -107,17 +107,19 @@ const NavBar = () => {
             Login
           </Button>
         </Show>
-        <Box position={"relative"}>
-          <AiOutlineShoppingCart size={35} />
-          <Badge
-            position={"absolute"}
-            top={"0px"}
-            right="0px"
-            colorScheme="green"
-          >
-            1
-          </Badge>
-        </Box>
+        <NavLink to="/cart">
+          <Box position={"relative"}>
+            <AiOutlineShoppingCart size={35} />
+            <Badge
+              position={"absolute"}
+              top={"0px"}
+              right="0px"
+              colorScheme="green"
+            >
+              1
+            </Badge>
+          </Box>
+        </NavLink>
       </Flex>
     </Flex>
   );

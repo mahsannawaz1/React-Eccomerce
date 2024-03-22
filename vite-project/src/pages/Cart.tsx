@@ -1,7 +1,6 @@
 import {
   Text,
   Table,
-  TableCaption,
   TableContainer,
   Thead,
   Tbody,
@@ -15,13 +14,12 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
-
+import { IoClose } from "react-icons/io5";
 const Cart = () => {
   return (
     <Box paddingX="10%" marginY={10}>
       <TableContainer>
         <Table variant="simple">
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
           <Thead>
             <Tr fontWeight="bold">
               <Th fontWeight="bold">Products</Th>
@@ -36,7 +34,7 @@ const Cart = () => {
                 Total
               </Th>
               <Th fontWeight="bold" isNumeric>
-                Remove
+                <Text textAlign={"center"}>Remove</Text>
               </Th>
             </Tr>
           </Thead>
@@ -45,37 +43,15 @@ const Cart = () => {
               <Td>inches</Td>
               <Td>millimetres (mm)</Td>
               <Td isNumeric>25.4</Td>
-              <Td>inches</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td isNumeric>30.48</Td>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
+              <Td textAlign={"end"}>inches</Td>
+              <Td textAlign={"end"}>millimetres (mm)</Td>
+              <Td isNumeric>
+                <Flex justifyContent={"center"}>
+                  <IoClose />
+                </Flex>
+              </Td>
             </Tr>
           </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
-            </Tr>
-          </Tfoot>
         </Table>
       </TableContainer>
       <Flex marginY={10}>
