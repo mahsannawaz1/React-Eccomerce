@@ -13,6 +13,7 @@ import {
   Heading,
   Button,
   Input,
+  Badge,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
 const Cart = () => {
@@ -43,7 +44,9 @@ const Cart = () => {
               <Td>inches</Td>
               <Td>millimetres (mm)</Td>
               <Td isNumeric>25.4</Td>
-              <Td textAlign={"end"}>inches</Td>
+              <Td textAlign={"end"}>
+                <Badge padding="5px 15px">4</Badge>
+              </Td>
               <Td textAlign={"end"}>millimetres (mm)</Td>
               <Td isNumeric>
                 <Flex justifyContent={"center"}>
