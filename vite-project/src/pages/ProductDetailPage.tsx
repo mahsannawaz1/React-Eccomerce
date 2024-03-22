@@ -16,7 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink, useParams } from "react-router-dom";
 import { LiaGreaterThanSolid } from "react-icons/lia";
-import { CiStar } from "react-icons/ci";
+import { IoStar } from "react-icons/io5";
+import { IoStarOutline } from "react-icons/io5";
 import useProductDetial from "../services/useProductDetial";
 
 const ProductDetailPage = () => {
@@ -31,6 +32,21 @@ const ProductDetailPage = () => {
   const ID = parseInt(id ?? "0");
 
   const { data: product } = useProductDetial(ID);
+  const icons = [];
+  for (
+    let i = 0;
+    i < Math.round(product?.rating.rate ? product?.rating.rate : 1);
+    i++
+  )
+    icons.push(i + 1);
+
+  const remainingIcons = [];
+  for (
+    let i = Math.round(product?.rating.rate ? product?.rating.rate : 1);
+    i < 5;
+    i++
+  )
+    remainingIcons.push(i);
 
   return (
     <>
@@ -127,11 +143,13 @@ const ProductDetailPage = () => {
           >
             <Heading>{product?.title}</Heading>
             <Flex gap={"2px"} alignItems={"center"}>
-              <CiStar />
-              <CiStar />
-              <CiStar />
-              <CiStar />
-              <CiStar />
+              {icons.map((number) => (
+                <IoStar key={number} color="red" />
+              ))}
+              {remainingIcons.map((number) => (
+                <IoStarOutline key={number} />
+              ))}
+
               <Text fontWeight={"bold"}>( {product?.rating.count} )</Text>
             </Flex>
             <Flex
@@ -145,7 +163,7 @@ const ProductDetailPage = () => {
               <Text textDecoration={"line-through"} color="gray">
                 ${(product?.price ? product?.price + 40 : 0).toFixed(2)}
               </Text>
-              <Text color="red">$ {product?.price.toFixed(2)}</Text>
+              <Text color="red">${product?.price.toFixed(2)}</Text>
             </Flex>
             <Text>{product?.description}</Text>
             <Text
@@ -160,8 +178,10 @@ const ProductDetailPage = () => {
               Select Size
             </Text>
             <Flex gap={2}>
-              {Object.entries(SIZES).map((size) => (
-                <Button borderRadius={0}>{size[1]}</Button>
+              {Object.entries(SIZES).map((size, index) => (
+                <Button key={index} borderRadius={0}>
+                  {size[1]}
+                </Button>
               ))}
             </Flex>
             <Flex marginY={3}>
@@ -181,7 +201,7 @@ const ProductDetailPage = () => {
                   {product?.category == "electronics"
                     ? "Electronics"
                     : product?.category == "jewelery"
-                    ? "Jewelery"
+                    ? " Jewelery"
                     : product?.category == "men's clothing"
                     ? "Men"
                     : "Women"}
