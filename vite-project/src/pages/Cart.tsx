@@ -16,6 +16,7 @@ import {
   Image,
   Link,
   Show,
+  TableCaption,
 } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
 
@@ -28,6 +29,9 @@ const Cart = () => {
     <Box paddingX="10%" marginY={10}>
       <TableContainer>
         <Table variant="simple">
+          {cart.cartItems.length == 0 && (
+            <TableCaption color={"red"}>Your Cart is Empty</TableCaption>
+          )}
           <Thead>
             <Tr fontWeight="bold">
               <Th fontWeight="bold" padding={{ base: "5px" }}>
@@ -128,10 +132,12 @@ const Cart = () => {
                   <Td>Subtotal</Td>
                   <Td paddingLeft={{ base: 10, lg: 200 }}>
                     $
-                    {cart.cartItems.reduce(
-                      (acc, item) => acc + item.quantity * item.item.price,
-                      0
-                    )}
+                    {cart.cartItems
+                      .reduce(
+                        (acc, item) => acc + item.quantity * item.item.price,
+                        0
+                      )
+                      .toFixed(2)}
                   </Td>
                 </Tr>
                 <Tr>
@@ -147,10 +153,12 @@ const Cart = () => {
                   <Td>Total</Td>
                   <Td paddingLeft={{ base: 10, lg: 200 }}>
                     $
-                    {cart.cartItems.reduce(
-                      (acc, item) => acc + item.quantity * item.item.price,
-                      0
-                    )}
+                    {cart.cartItems
+                      .reduce(
+                        (acc, item) => acc + item.quantity * item.item.price,
+                        0
+                      )
+                      .toFixed(2)}
                   </Td>
                 </Tr>
               </Tbody>
