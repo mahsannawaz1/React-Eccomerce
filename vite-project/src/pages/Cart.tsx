@@ -193,6 +193,7 @@ const Cart = () => {
               borderRadius={0}
               fontWeight={"400"}
               border={"1px solid lightgrey"}
+              isDisabled={cart.cartItems.length == 0}
             >
               Submit
             </Button>
@@ -208,6 +209,7 @@ const Cart = () => {
           textTransform={"uppercase"}
           borderRadius={0}
           padding={"15px 20px"}
+          isDisabled={cart.cartItems.length == 0}
         >
           Proceed To Checkout
         </Button>
