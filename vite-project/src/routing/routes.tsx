@@ -7,6 +7,7 @@ import Electronics from "../pages/Electronics";
 import Jewelery from "../pages/Jewelery";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import Cart from "../pages/Cart";
+import Login from "../pages/Login.1";
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const routes = createBrowserRouter([
       { path: "electronics", element: <Electronics /> },
       { path: "jewelery", element: <Jewelery /> },
       { path: "cart", element: <Cart /> },
+      { path: "login", element: <Login /> },
       { path: "product/:id", element: <ProductDetailPage /> },
     ],
   },

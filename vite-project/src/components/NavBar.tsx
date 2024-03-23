@@ -15,12 +15,16 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/images/logo.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useContext } from "react";
 import CartContext from "../assets/contexts/cartContext";
+import AuthContext from "../assets/contexts/authContext";
+import { User } from "../services/useAuth";
 const NavBar = () => {
   const { cart } = useContext(CartContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
     <Flex
       borderBottom={"2px solid #F4F4F4"}
@@ -104,12 +108,20 @@ const NavBar = () => {
       <Flex gap={8}>
         <Show above="lg">
           <Button
+            onClick={(event) => {
+              if (event.currentTarget.textContent == "Login")
+                navigate("/login");
+              else {
+                dispatch({ type: "GET", user: {} as User });
+                event.currentTarget.textContent = "Login";
+              }
+            }}
             borderRadius={"35px"}
             background="white"
             paddingX={7}
             border={"1px solid lightgray"}
           >
-            Login
+            {user.email ? "Logout" : "Login"}
           </Button>
         </Show>
         <NavLink to="/cart">
